@@ -3,7 +3,8 @@ import './App.css';
 import { Form } from 'semantic-ui-react';
 
 const api = {
-  key: "7a6e0166014f0319a25d7150672cf91d",
+  //Enter you API key
+  key: "",
   base: "http://api.openweathermap.org/data/2.5/weather?q"
 }
 
