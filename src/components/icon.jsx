@@ -1,9 +1,9 @@
 import React from 'react';
-import './styles/icon.css';
+import './styles/icon.scss';
 
 const Icon = () => {
     return (
-        <div class="wrapper">
+     <div class="wrapper">
   <div class="sun"></div>
   <div class="cloud">
     <div class="cloud1">

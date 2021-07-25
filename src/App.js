@@ -1,6 +1,8 @@
 import React, {useState} from 'react';
-import './App.css';
+import './App.scss';
 import { Form } from 'semantic-ui-react';
+import Icon from './components/icon'
+import Weather from './components/Weather';
 
 const api = {
   //Enter you API key
@@ -10,7 +12,8 @@ const api = {
 
 function App() {
   const [userInput, setUserInput] = useState('');
-  const [weather, setWeather] = useState('');
+  const [weatherData, setWeatherData] = useState('');
+  const [error, setError] = useState(null);
 
   const handleSubmit = () => {
     fetch(`${api.base}=${userInput}&units=metric&appid=${api.key}`)
@@ -19,10 +22,12 @@ function App() {
         if (data.message) {
           // setError(data.message)
           console.log(data.message);
+          setError(data.message);
+          setWeatherData(null);
         }
         else {
-          setWeather(data);
-          console.log(data);
+          setWeatherData(data);
+          setError(null);
         }
       })
   }
@@ -34,7 +39,9 @@ function App() {
     }
   
   return (
-    <div className="search">
+    <div>
+      <Icon />
+      <div className="search">
           <Form onSubmit={handleSubmit}>
           <Form.Group>
             <Form.Input
@@ -45,7 +52,9 @@ function App() {
             <Form.Button content='Submit' />
           </Form.Group>
         </Form>
-    </div>
+        {weatherData && <Weather weatherData={weatherData}/>}
+      </div>
+  </div>
   );
 }
 
